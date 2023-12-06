@@ -1,15 +1,15 @@
 #include <iostream>
 #include <vector>
 #include <climits>
- 
+
 using namespace std;
- 
-int main() 
+
+int main()
 {
     long long n;
     cin >> n;
     long long ans = LLONG_MAX;
- 
+
     vector<long long> p(n);
     long long tot = 0;
     for (int i = 0; i < n; i++)
@@ -17,7 +17,7 @@ int main()
         cin >> p[i];
         tot += p[i];
     }
- 
+
     for (long long i = 0; i < 1 << n; i++)
     {
         long long s = 0;

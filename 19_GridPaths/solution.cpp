@@ -1,47 +1,46 @@
 #include <iostream>
-#include <vector>
- 
+
 using namespace std;
- 
+
 const int n = 7;
 const int total_steps = 48;
 bool visited[n][n];
 int reserved[49];
 string path;
- 
+
 void move(int row, int col, int& ans, int& steps)
 {
     if (row == n - 1 && col == 0)
     {
-        if (steps == total_steps) 
+        if (steps == total_steps)
         {
             ans++;
         }
         return;
     }
- 
-    if (((row + 1 == n || (visited[row - 1][col] && visited[row + 1][col])) && col - 1 >= 0 && col + 1 < n && !visited[row][col - 1] && !visited[row][col + 1])) 
+
+    if (((row + 1 == n || (visited[row - 1][col] && visited[row + 1][col])) && col - 1 >= 0 && col + 1 < n && !visited[row][col - 1] && !visited[row][col + 1]))
     {
         return;
     }
-    if (((col + 1 == n || (visited[row][col - 1] && visited[row][col + 1])) && row - 1 >= 0 && row + 1 < n && !visited[row - 1][col] && !visited[row + 1][col])) 
+    if (((col + 1 == n || (visited[row][col - 1] && visited[row][col + 1])) && row - 1 >= 0 && row + 1 < n && !visited[row - 1][col] && !visited[row + 1][col]))
     {
         return;
     }
-    if (((row == 0 || (visited[row + 1][col] && visited[row - 1][col])) && col - 1 >= 0 && col + 1 < n && !visited[row][col - 1] && !visited[row][col + 1])) 
+    if (((row == 0 || (visited[row + 1][col] && visited[row - 1][col])) && col - 1 >= 0 && col + 1 < n && !visited[row][col - 1] && !visited[row][col + 1]))
     {
         return;
     }
-    if (((col == 0 || (visited[row][col + 1] && visited[row][col - 1])) && row - 1 >= 0 && row + 1 < n && !visited[row - 1][col] && !visited[row + 1][col])) 
+    if (((col == 0 || (visited[row][col + 1] && visited[row][col - 1])) && row - 1 >= 0 && row + 1 < n && !visited[row - 1][col] && !visited[row + 1][col]))
     {
         return;
     }
- 
+
     visited[row][col] = true;
- 
+
     if (path[steps] != '?')
     {
-        if (path[steps] == 'U') 
+        if (path[steps] == 'U')
         {
             if (row - 1 >= 0)
             {
@@ -53,7 +52,7 @@ void move(int row, int col, int& ans, int& steps)
                 }
             }
         }
-        else if (path[steps] == 'R') 
+        else if (path[steps] == 'R')
         {
             if (col + 1 < n)
             {
@@ -65,7 +64,7 @@ void move(int row, int col, int& ans, int& steps)
                 }
             }
         }
-        else if (path[steps] == 'D') 
+        else if (path[steps] == 'D')
         {
             if (row + 1 < n)
             {
@@ -77,7 +76,7 @@ void move(int row, int col, int& ans, int& steps)
                 }
             }
         }
-        else if (path[steps] == 'L') 
+        else if (path[steps] == 'L')
         {
             if (col - 1 >= 0)
             {
@@ -90,8 +89,8 @@ void move(int row, int col, int& ans, int& steps)
             }
         }
     }
-    else 
-    {        
+    else
+    {
         if (row + 1 < n)
         {
             if (!visited[row + 1][col])
@@ -101,7 +100,7 @@ void move(int row, int col, int& ans, int& steps)
                 steps--;
             }
         }
- 
+
         if (col + 1 < n)
         {
             if (!visited[row][col + 1])
@@ -111,7 +110,7 @@ void move(int row, int col, int& ans, int& steps)
                 steps--;
             }
         }
-        
+
         if (row - 1 >= 0)
         {
             if (!visited[row - 1][col])
@@ -121,7 +120,7 @@ void move(int row, int col, int& ans, int& steps)
                 steps--;
             }
         }
-               
+
         if (col - 1 >= 0)
         {
             if (!visited[row][col - 1])
